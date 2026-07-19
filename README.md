@@ -2,7 +2,7 @@
 
 Simulation and analysis code for the preprint:
 
-**"SU(2) Neutrino QC: Dynamical Neutrino Mass Generation from the Geometric Variance of the Weak Gauge Field"**
+**"Dynamical Generation of Neutrino Mass from Local SU(2) Gauge Variance"**
 R. Sakidja, Zenodo (2026). DOI: https://doi.org/10.5281/zenodo.21437873
 
 The paper asks whether the neutrino mass has a geometric origin in the SU(2) gauge field itself. The Pauli components of the SU(2) gauge field average to zero, and that zero has long been read as absence. Their variance does not vanish: it locks to the geometric bound of the group, in every simulation, at every lattice size, on quantum circuits and classical lattices alike. That variance is the Yang–Mills energy density, term by term.

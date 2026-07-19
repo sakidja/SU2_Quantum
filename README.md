@@ -44,7 +44,7 @@ Backend: PennyLane with `lightning.qubit`. The 27-qubit cubic case needs ~2 GB s
 
 ## Data
 
-`data/` holds the campaign summary JSONs. Large products — the results npz files with pooled site-level histograms and the 32 gauge-field checkpoints (L = 32) — are deposited with the Zenodo record, not in this repository.
+`data/` holds the campaign summary JSONs. Large products — the results npz files with pooled site-level histograms and the 32 gauge-field checkpoints (L = 32) — are attached to this repository's **Releases** rather than the source tree, and will be updated there as further campaigns complete. The Zenodo record holds the manuscript of record.
 
 ## Reproducibility
 

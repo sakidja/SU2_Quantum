@@ -104,4 +104,15 @@ This work was assisted by LLMs for scripts and drafting. The concept, its develo
 
 ## Citation
 
-If you use this code, cite the Zenodo preprint above.
+If you use this code or build on its results, please cite:
+
+R. Sakidja, "Dynamical Generation of Neutrino Mass from Local SU(2) Gauge Variance," Zenodo (2026). https://doi.org/10.5281/zenodo.23111769
+
+A machine readable citation is provided in `CITATION.cff`; GitHub shows it through the "Cite this repository" button.
+
+## License
+
+The code in this repository is released under the MIT License (see `LICENSE`). Any copy or substantial portion of the code must retain the copyright notice and this permission notice.
+
+The scientific results and the paper are the work of the author and are dated by the Zenodo record above. Work that extends these results is asked to cite that record.
+

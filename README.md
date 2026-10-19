@@ -21,6 +21,7 @@ analysis/    Post-processing and figure scripts (laptop-scale, no MPI)
 data/        Summary JSONs from the production campaigns
 quantum/     Quantum simulation scripts (planar and cubic lattices)
 classical/   Classical SU(2) Wilson studies: the S6 twist campaign (twist/), 3D vortex lock (topology/), 4D (topology4d/)
+hamiltonian/ Version 3: exact Kogut Susskind Hamiltonian treatment, twisted boundary Monte Carlo, results and the Section 11 addendum
 ```
 
 ## Quantum simulations (`quantum/`)
@@ -79,6 +80,23 @@ The 3D campaign repeated in 4D SU(2), the setting of Creutz (1980): same Wilson 
 | 27, 28 | `su2_4d_production.py` 32⁴, `su2_4d_potential.py --tmax 12` 24⁴, β = 2.6 | fifth coupling, in progress; not used in the paper | |
 
 Summary JSONs: `data/nersc_summaries/4d/`. Progress of every run: `python check_status.py`.
+
+## Version 3: the Hamiltonian vacuum (`hamiltonian/`)
+
+Version 3 of the paper adds an exact quantum treatment of the same SU(2) plaquette field: the Kogut Susskind Hamiltonian diagonalised on small periodic lattices (single plaquette, open 2×1, 1×1, 2×1, 3×1 and 2×2 tori), with the electric basis truncated at j ≤ jmax and convergence shown in jmax, tied to the Monte Carlo campaign above through a twist free energy computed with the same heat bath code. All runs on NERSC Perlmutter. The folder has its own `README.md` with the layout, the script to section map and the memory rule for the large builds.
+
+| Script | Result | Paper |
+|---|---|---|
+| `nersc/run.py` | exact ground state: Σ Var(c_k) = 0.614 on 3×1 at β = 2.2 against 0.617 from the Monte Carlo; twist energy on every closed lattice, zero on the open pair | 11.2, 11.4, Table 11.1 |
+| `nersc/probe_phase.py` | probe coupled to Σ c_k²: energy shift λ Σ Var(c_k), Lamb correction 1 to 3 percent, coherence loss below one percent at λ = 0.5 | 11.3, Table 11.2, Fig 29 |
+| `twistmc/su2_twist_free_energy.py` | twist cost per unit time 0.1275 at the 2×2 cross section, zero from 4³ to 32³: a core of about 7/g², free beyond | 11.4, Table 11.3, Fig 30 |
+| `twistmc/vortex_eye.py` | the imposed flux has no location in boxes of L ≥ 8: twisted and untwisted ensembles identical slice by slice | 11.4, Fig 31 |
+| `nersc/flux_quench.py` | twist released from one plaquette delocalises in about one lattice time; variance moves with the energy (correlation 0.82 to 0.95) | 11.5, Fig 32 |
+| `nersc/emergent_symmetry.py` | no singlet projection: the ground state has total charge K = 0 on every lattice, gap 0.84 to 2.84 to the first charged sector | 11.6, Fig 33 |
+| `nersc/ungauged.py` | no gauge fixing, no constraint: ⟨G_s²⟩ = 0 at every site; breaking term κ induces ⟨G²⟩ = χ κ² with χ × gap² = 0.36 to 0.37 constant across couplings, sectors and truncations | 11.6, Table 11.5, Fig 33 |
+| `nersc/angle_distribution.py` | twist populations of the 3×1 ground state, 0.728 / 0.234 / 0.037, converged in jmax; a geometry limited result | 11.7, Table 11.4, Fig 34 |
+
+Results and job logs of every run are in `hamiltonian/nersc/results`, `hamiltonian/nersc/logs` and `hamiltonian/twistmc/results`; the saved Monte Carlo configurations and the quench movies stay on Perlmutter. Runs still in the queue at this snapshot (2×2 at jmax 1.5, 3×1 at jmax 2.5 and 3, the 2×2 quench at jmax 1.5) will be added when they finish.
 
 ## Analysis (`analysis/`)
 

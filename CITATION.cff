@@ -6,7 +6,7 @@ authors:
     given-names: Ridwan
     affiliation: "Department of Physics, Astronomy and Materials Science, Missouri State University"
 repository-code: "https://github.com/sakidja/SU2_Quantum"
-doi: 10.5281/zenodo.23111769
+doi: 10.5281/zenodo.23646621
 license: MIT
 keywords:
   - SU(2) gauge theory
@@ -17,13 +17,14 @@ keywords:
   - quantum computing
 preferred-citation:
   type: article
+  version: "3"
   title: "Dynamical Generation of Neutrino Mass from Local SU(2) Gauge Variance"
   authors:
     - family-names: Sakidja
       given-names: Ridwan
       affiliation: "Department of Physics, Astronomy and Materials Science, Missouri State University"
-  doi: 10.5281/zenodo.23111769
+  doi: 10.5281/zenodo.23646621
   publisher:
     name: Zenodo
   year: 2026
-  url: "https://doi.org/10.5281/zenodo.23111769"
+  url: "https://doi.org/10.5281/zenodo.23646621"

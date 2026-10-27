@@ -3,7 +3,7 @@
 Simulation and analysis code for the preprint:
 
 **"Dynamical Generation of Neutrino Mass from Local SU(2) Gauge Variance"**
-R. Sakidja, Zenodo (2026). DOI: [10.5281/zenodo.23111769](https://doi.org/10.5281/zenodo.23111769)
+R. Sakidja, Zenodo (2026). Version 3. DOI: [10.5281/zenodo.23646621](https://doi.org/10.5281/zenodo.23646621)
 
 The paper asks whether the neutrino mass has a geometric origin in the SU(2) gauge field itself. The imaginary components of the gauge field average to zero, and that zero has long been read as absence. Their variance does not vanish. It is the Yang–Mills energy density, term by term, and it is fixed by the geometry of the group through the exact relation
 
@@ -93,10 +93,10 @@ Version 3 of the paper adds an exact quantum treatment of the same SU(2) plaquet
 | `twistmc/vortex_eye.py` | the imposed flux has no location in boxes of L ≥ 8: twisted and untwisted ensembles identical slice by slice | 11.4, Fig 31 |
 | `nersc/flux_quench.py` | twist released from one plaquette delocalises in about one lattice time; variance moves with the energy (correlation 0.82 to 0.95) | 11.5, Fig 32 |
 | `nersc/emergent_symmetry.py` | no singlet projection: the ground state has total charge K = 0 on every lattice, gap 0.84 to 2.84 to the first charged sector | 11.6, Fig 33 |
-| `nersc/ungauged.py` | no gauge fixing, no constraint: ⟨G_s²⟩ = 0 at every site; breaking term κ induces ⟨G²⟩ = χ κ² with χ × gap² = 0.36 to 0.37 constant across couplings, sectors and truncations | 11.6, Table 11.5, Fig 33 |
+| `nersc/ungauged.py` | no gauge fixing, no constraint: ⟨G_s²⟩ = 0 at every site; breaking term κ induces ⟨G²⟩ = χ κ² with χ × gap² = 0.36 to 0.37 constant across couplings, sectors and truncations; gap constant in units of g²; thermal occupation with activation energy equal to the gap; random per link breaking with χ′ = χ; the 1×1×1 cube in 3+1 dimensions | 11.6, Table 11.5, Fig 33 |
 | `nersc/angle_distribution.py` | twist populations of the 3×1 ground state, 0.728 / 0.234 / 0.037, converged in jmax; a geometry limited result | 11.7, Table 11.4, Fig 34 |
 
-Results and job logs of every run are in `hamiltonian/nersc/results`, `hamiltonian/nersc/logs` and `hamiltonian/twistmc/results`; the saved Monte Carlo configurations and the quench movies stay on Perlmutter. Runs still in the queue at this snapshot (2×2 at jmax 1.5, 3×1 at jmax 2.5 and 3, the 2×2 quench at jmax 1.5) will be added when they finish.
+Results and job logs of every run are in `hamiltonian/nersc/results`, `hamiltonian/nersc/logs` and `hamiltonian/twistmc/results`; the saved Monte Carlo configurations and the quench movies stay on Perlmutter. Added since the first v3 snapshot: 3×1 at jmax 2.5, 2×2 at jmax 1.5, the 2×2 quench at jmax 1.5, the thermal and random breaking readouts of the ungauged vacuum, the 3+1 dimensional 1×1×1 cube, the torus geometry generator, the general Lx×Ly×Lt heat bath and the centre vortex analysis. Added in the second snapshot: the eight cross section boxes (2×3 to 5×5 at Lₜ = 32) that fill Figure 30 between 2×2 and 4×4, with the twist cost falling as e^(−0.51 A) in the area, and the 3+1 dimensional 2×1×1 box in `ungauged.py`. Also added: the centre vortex analysis of the twisted against the untwisted ensembles (Figure 35). This is the release snapshot for version 3, including the 3+1 dimensional 2×1×1 box (7.5 million states, Gauss law as an outcome at both sites, gap/g² and χ × gap² in three spatial dimensions). Still queued: 3×1 at jmax 3; the 3×2 torus at jmax 1 needs a coupled basis builder; both go into version 3.1. The eight teaching lectures built from the paper (about 140 slides each, 1,124 in all, with typeset derivations, falsifier slides, exercises and solutions) are built from the sources in `lectures/`; see “Building the lecture decks” below.
 
 ## Analysis (`analysis/`)
 
@@ -118,13 +118,13 @@ Requirements: `numpy`, `scipy`, `matplotlib`, `pennylane` (+ `lightning.qubit`),
 
 ## Acknowledgment of method
 
-This work was assisted by LLMs for scripts and drafting. The concept, its development, and the verification of every result remain the responsibility of the author.
+AI (LLM) assistance (Claude, Anthropic) was used in preparing code and text. The framework, calculations and analysis are the author's own, and the author takes full responsibility for the scientific content.
 
 ## Citation
 
 If you use this code or build on its results, please cite:
 
-R. Sakidja, "Dynamical Generation of Neutrino Mass from Local SU(2) Gauge Variance," Zenodo (2026). https://doi.org/10.5281/zenodo.23111769
+R. Sakidja, "Dynamical Generation of Neutrino Mass from Local SU(2) Gauge Variance," version 3, Zenodo (2026). https://doi.org/10.5281/zenodo.23646621
 
 A machine readable citation is provided in `CITATION.cff`; GitHub shows it through the "Cite this repository" button.
 
@@ -134,3 +134,22 @@ The code in this repository is released under the MIT License (see `LICENSE`). A
 
 The scientific results and the paper are the work of the author and are dated by the Zenodo record above. Work that extends these results is asked to cite that record.
 
+
+## Building the lecture decks
+
+The eight lectures are built from source rather than stored as binaries. The slide
+content is in `lectures/content2.js` through `content9.js` and `lectures/add/`, the
+figures in `lectures/img/`, and the real time quench movies in `lectures/gif/`.
+
+```
+cd lectures
+python render_eqs.py                 # typesets the equation images into eqimg/
+for n in 1 2 3 4 5 6 7 8; do
+  BASE=./content9.js LEC=$n CONTENT=./lectures.js OUT=Lecture_$n.pptx node deck.js
+done
+```
+
+`render_eqs.py` regenerates `eqimg/`, which is a build cache and is therefore not
+tracked. Requirements: node with `pptxgenjs`, and a LaTeX installation for the
+equation images. The built decks, 1,124 slides across the eight lectures, are
+attached to the Zenodo record rather than to this repository.

@@ -134,21 +134,6 @@ The code in this repository is released under the MIT License (see `LICENSE`). A
 
 The scientific results and the paper are the work of the author and are dated by the Zenodo record above. Work that extends these results is asked to cite that record.
 
-
-## Building the lecture decks
-
-The eight lectures are built from source rather than stored as binaries. The slide
-content is in `lectures/content2.js` through `content9.js` and `lectures/add/`, the
-figures in `lectures/img/`, and the real time quench movies in `lectures/gif/`.
-
-```
-cd lectures
-python render_eqs.py                 # typesets the equation images into eqimg/
-for n in 1 2 3 4 5 6 7 8; do
-  BASE=./content9.js LEC=$n CONTENT=./lectures.js OUT=Lecture_$n.pptx node deck.js
-done
-```
-
 `render_eqs.py` regenerates `eqimg/`, which is a build cache and is therefore not
 tracked. Requirements: node with `pptxgenjs`, and a LaTeX installation for the
 equation images. The built decks, 1,124 slides across the eight lectures, are
